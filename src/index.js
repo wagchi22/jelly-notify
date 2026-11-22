@@ -9,6 +9,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const { formatNotification } = require('./notifications');
 const { sendWhatsAppMessage } = require('./whatsapp');
 const { logError, logInfo } = require('./logger');
+const { cleanChromiumProfileLocks } = require('./profile-locks');
 
 function readConfig(env = process.env) {
   const apiToken = env.API_TOKEN?.trim();
@@ -258,6 +259,10 @@ function createApp({
 
 async function start() {
   const config = readConfig();
+  const removedLocks = cleanChromiumProfileLocks();
+  if (removedLocks.length > 0) {
+    logInfo(`Arquivos de lock obsoletos removidos: ${removedLocks.length}`);
+  }
   let whatsappReady = false;
   let qrImage;
   let qrRevision = 0;

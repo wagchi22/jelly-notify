@@ -88,6 +88,25 @@ node .\src\index.js
 
 A sessão do WhatsApp fica em `.wwebjs_auth/` e não deve ser compartilhada nem versionada.
 
+## Chromium falha devido a arquivos de lock obsoletos
+
+A aplicação remove automaticamente esses arquivos após uma interrupção abrupta ou reinício do contêiner.
+
+Para uma limpeza manual no Docker:
+
+```powershell
+docker compose down
+docker compose up -d --force-recreate jelly-notify
+```
+
+No Windows, ao executar fora do Docker, pare todas as instâncias do Jelly Notify antes de limpar manualmente:
+
+```powershell
+Get-ChildItem -Path .\.wwebjs_auth -Recurse -File |
+  Where-Object Name -In "SingletonCookie","SingletonLock","SingletonSocket","lockfile" |
+  Remove-Item -Force
+```
+
 ## Integração com o Jellyfin
 
 Configure o webhook do Jellyfin para enviar requisições `POST` para:
