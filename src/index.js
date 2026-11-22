@@ -9,7 +9,6 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const { formatNotification } = require('./notifications');
 const { sendWhatsAppMessage } = require('./whatsapp');
 const { logError, logInfo } = require('./logger');
-const { cleanChromiumProfileLocks } = require('./profile-locks');
 
 function readConfig(env = process.env) {
   const apiToken = env.API_TOKEN?.trim();
