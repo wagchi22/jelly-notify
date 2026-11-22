@@ -2,7 +2,7 @@
   <img src="docs/public/logo.svg" alt="Logo do projeto" width="300">
 </p>
 
-# jwbot
+# jelly-notify
 
 Bot para receber notificações do Jellyfin e enviá-las para contatos do WhatsApp.
 
@@ -23,8 +23,8 @@ Bot para receber notificações do Jellyfin e enviá-las para contatos do WhatsA
 ## Instalação
 
 ```bash
-git clone https://github.com/wagchi22/jwbot.git
-cd jwbot
+git clone https://github.com/wagchi22/jelly-notify.git
+cd jelly-notify
 npm install
 ```
 
@@ -33,9 +33,9 @@ npm install
 1. Gere o arquivo `.env`:
 
 ```bash
-node bin/jwbot.js init
+node bin/jelly-notify.js init
 # ou, após instalar o pacote localmente:
-jwbot init
+jelly-notify init
 ```
 
 2. Ajuste os valores em `.env`:
@@ -68,16 +68,16 @@ Acesse `http://localhost:3000/qr` para ver o QR code. A API também expõe o end
 Configure o arquivo `.env` como descrito acima e inicie o serviço:
 
 ```bash
-docker compose pull jwbot
-docker compose up -d jwbot
+docker compose pull jelly-notify
+docker compose up -d jelly-notify
 ```
 
-O QR code não aparece nos logs; abra `http://localhost:3000/qr` para visualizá-lo no navegador. A sessão e o cache do WhatsApp ficam no volume Docker `jwbot`, e o serviço pode ser parado com `docker compose down` sem remover esses dados.
+O QR code não aparece nos logs; abra `http://localhost:3000/qr` para visualizá-lo no navegador. A sessão e o cache do WhatsApp ficam no volume Docker `jelly-notify`, e o serviço pode ser parado com `docker compose down` sem remover esses dados.
 
 No Windows, também é possível iniciar com:
 
 ```powershell
-.\jwbot.bat
+.\jelly-notify.bat
 ```
 
 Ou diretamente:
@@ -96,13 +96,13 @@ Configure o webhook do Jellyfin para enviar requisições `POST` para:
 http://<host-da-api>:3000/api/notifications
 ```
 
-Se o Jellyfin estiver em um contêiner Docker no Windows com Docker Desktop e o jwbot estiver publicando a porta `3000` no host, use:
+Se o Jellyfin estiver em um contêiner Docker no Windows com Docker Desktop e o jelly-notify estiver publicando a porta `3000` no host, use:
 
 ```text
 http://host.docker.internal:3000/api/notifications
 ```
 
-Dentro do contêiner Jellyfin, `localhost` aponta para o próprio Jellyfin, não para o jwbot. Se os dois contêineres estiverem conectados à mesma rede Docker, também é possível usar o nome do serviço ou contêiner do jwbot, por exemplo `http://jwbot:3000/api/notifications`.
+Dentro do contêiner Jellyfin, `localhost` aponta para o próprio Jellyfin, não para o jelly-notify. Se os dois contêineres estiverem conectados à mesma rede Docker, também é possível usar o nome do serviço ou contêiner do jelly-notify, por exemplo `http://jelly-notify:3000/api/notifications`.
 
 Exemplo de payload com token e mensagem:
 

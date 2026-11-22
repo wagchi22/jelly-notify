@@ -1,7 +1,7 @@
 @echo off
 cls
 cd /d "%~dp0"
-title jwbot
+title jelly-notify
 node src\index.js
 pause >nul
 exit
