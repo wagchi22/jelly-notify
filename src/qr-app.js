@@ -5,7 +5,7 @@ const page = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Conectar WhatsApp - jelly-notify</title>
+  <title>Conectar WhatsApp - Jelly Notify</title>
   <style>
     body { font: 16px system-ui, sans-serif; margin: 2rem auto; max-width: 32rem; padding: 0 1rem; text-align: center; }
     img { height: auto; image-rendering: pixelated; max-width: 100%; width: 320px; }
