@@ -51,8 +51,8 @@ test('serves a responsive QR page and status without authentication', async (t) 
   assert.equal(page.headers.get('www-authenticate'), null);
   assert.match(page.headers.get('content-security-policy'), /default-src 'none'/);
   const html = await page.text();
-  assert.match(html, /<title>Conectar WhatsApp - Jelly Notify<\/title>/);
   assert.match(html, /Conectar WhatsApp/);
+  assert.match(html, /<title>Conectar WhatsApp - Jelly Notify<\/title>/);
   assert.match(html, /fetch\('\/qr\/status'/);
   assert.match(html, /fetch\('\/qr\/qr\.png'/);
 
