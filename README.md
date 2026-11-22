@@ -96,6 +96,14 @@ Configure o webhook do Jellyfin para enviar requisições `POST` para:
 http://<host-da-api>:3000/api/notifications
 ```
 
+Se o Jellyfin estiver em um contêiner Docker no Windows com Docker Desktop e o jwbot estiver publicando a porta `3000` no host, use:
+
+```text
+http://host.docker.internal:3000/api/notifications
+```
+
+Dentro do contêiner Jellyfin, `localhost` aponta para o próprio Jellyfin, não para o jwbot. Se os dois contêineres estiverem conectados à mesma rede Docker, também é possível usar o nome do serviço ou contêiner do jwbot, por exemplo `http://jwbot:3000/api/notifications`.
+
 Exemplo de payload com token e mensagem:
 
 ```json
@@ -130,7 +138,7 @@ Invoke-RestMethod `
 
 ## Observações importantes
 
-- `localhost` funciona somente quando o Jellyfin e a API estão na mesma máquina ou rede local.
+- Use um endereço alcançável a partir do ambiente onde o Jellyfin está rodando. `localhost` só funciona quando a API está acessível no mesmo namespace de rede; dentro de um contêiner, refere-se ao próprio contêiner.
 - Se a API ficar exposta fora da rede local, proteja-a com autenticação e use HTTPS.
 - A API responde com `503` enquanto o WhatsApp estiver desconectado ou reconectando, `400` para payload inválido e `502` em falhas no envio para algum destinatário.
 - O campo `recipient` pode ser usado para enviar a mensagem apenas para um número específico já configurado.
