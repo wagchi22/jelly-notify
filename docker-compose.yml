@@ -1,7 +1,7 @@
 services:
-  jwbot:
-    image: ghcr.io/wagchi22/jwbot:latest
-    container_name: jwbot
+  jelly-notify:
+    image: ghcr.io/wagchi22/jelly-notify:latest
+    container_name: jelly-notify
     init: true
     restart: unless-stopped
     env_file:
@@ -12,9 +12,9 @@ services:
     ports:
       - "${PORT:-3000}:${PORT:-3000}"
     volumes:
-      - jwbot:/app/.wwebjs_auth
-      - jwbot:/app/.wwebjs_cache
+      - jelly-notify:/app/.wwebjs_auth
+      - jelly-notify:/app/.wwebjs_cache
 
 volumes:
-  jwbot:
-    name: jwbot
+  jelly-notify:
+    name: jelly-notify

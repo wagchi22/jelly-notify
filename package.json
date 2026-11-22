@@ -1,11 +1,11 @@
 {
-  "name": "jwbot",
+  "name": "jelly-notify",
   "version": "3.3.6",
   "description": "API de notificações do Jellyfin para WhatsApp",
   "license": "MIT",
   "main": "src/index.js",
   "bin": {
-    "jwbot": "bin/jwbot.js"
+    "jelly-notify": "bin/jelly-notify.js"
   },
   "files": [
     ".env.example",
@@ -16,12 +16,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wagchi22/jwbot.git"
+    "url": "git+https://github.com/wagchi22/jelly-notify.git"
   },
   "bugs": {
-    "url": "https://github.com/wagchi22/jwbot/issues"
+    "url": "https://github.com/wagchi22/jelly-notify/issues"
   },
-  "homepage": "https://github.com/wagchi22/jwbot#readme",
+  "homepage": "https://github.com/wagchi22/jelly-notify#readme",
   "keywords": [
     "jellyfin",
     "whatsapp",
