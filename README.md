@@ -2,7 +2,7 @@
   <img src="docs/public/logo.svg" alt="Logo do projeto" width="300">
 </p>
 
-# jelly-notify
+# Jelly Notify
 
 Bot para receber notificações do Jellyfin e enviá-las para contatos do WhatsApp.
 
