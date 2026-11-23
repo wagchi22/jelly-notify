@@ -258,10 +258,6 @@ function createApp({
 
 async function start() {
   const config = readConfig();
-  const removedLocks = cleanChromiumProfileLocks();
-  if (removedLocks.length > 0) {
-    logInfo(`Arquivos de lock obsoletos removidos: ${removedLocks.length}`);
-  }
   let whatsappReady = false;
   let qrImage;
   let qrRevision = 0;
