@@ -1,6 +1,6 @@
 {
   "name": "jelly-notify",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "API de notificações do Jellyfin para WhatsApp",
   "license": "MIT",
   "main": "src/index.js",
