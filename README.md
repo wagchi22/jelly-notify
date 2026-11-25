@@ -83,36 +83,39 @@ node .\src\index.js
 
 ## Integração com o Jellyfin
 
-Configure o webhook do Jellyfin para enviar requisições `POST` para:
+Instale o plugin Webhooks em `Painel > Plugins` e depois reinicie o Jellyfin.
+
+Depois vá em `Painel > Plugins > Webhooks > Configurações` e clique em `Add Generic Destination`.
+
+Ajuste `Webhook Name` para `jelly-notify`.
+
+Em `Webhook Url` coloque:
 
 ```text
-http://<host-da-api>:3000/api/notifications
-```
+# Jellyfin em contêiner com Docker Engine (mesma rede Docker do Jelly Notify)
+http://jelly-notify:3000/api/notifications
 
-Se o Jellyfin estiver em um contêiner Docker no Windows com Docker Desktop e o jelly-notify estiver publicando a porta `3000` no host, use:
-
-```text
+# Jellyfin em contêiner com Docker Desktop
 http://host.docker.internal:3000/api/notifications
+
+# Jellyfin instalado direto no Windows ou no WSL (fora de contêiner)
+http://localhost:3000/api/notifications
 ```
 
-Dentro do contêiner Jellyfin, `localhost` aponta para o próprio Jellyfin, não para o jelly-notify. Se os dois contêineres estiverem conectados à mesma rede Docker, também é possível usar o nome do serviço ou contêiner do jelly-notify, por exemplo `http://jelly-notify:3000/api/notifications`.
+Em `Status` deixe `Enable`.
 
-Exemplo de payload com token e mensagem:
+Em `Notification Type` marque `Item Added` e `Item Deleted`.
+
+Em `Item Type` marque `Movies` e `Episodes`.
+
+Em `Template` coloque:
 
 ```json
 {
   "apiToken": "<API_TOKEN>",
   "notificationType": "{{json_encode NotificationType}}",
   "itemId": "{{json_encode ItemId}}",
-  "message": "Jellyfin: {{#if_equals ItemType 'Episode'}}*{{json_encode SeriesName}} - {{json_encode Name}}*{{else}}*{{json_encode Name}}{{#if_exist Year}} ({{json_encode Year}}){{/if_exist}}*{{/if_equals}} {{#if_equals NotificationType 'ItemRemoved'}}saiu do catálogo{{else}}entrou no catálogo{{/if_equals}}"
-}
-```
-
-Também é possível enviar um payload simples:
-
-```json
-{
-  "message": "Teste de notificação do Jellyfin"
+  "message": "Jellyfin: {{#if_equals ItemType 'Episode'}}*{{json_encode SeriesName}} - T{{SeasonNumber00}}E{{EpisodeNumber00}}*{{else}}*{{json_encode Name}}{{#if_exist Year}} ({{json_encode Year}}){{/if_exist}}*{{/if_equals}} {{#if_equals NotificationType 'ItemRemoved'}}saiu do catálogo{{else}}entrou no catálogo{{/if_equals}}"
 }
 ```
 
@@ -129,7 +132,7 @@ Invoke-RestMethod `
   -Body '{"message":"Teste de notificação do Jellyfin"}'
 ```
 
-## Observações importantes
+## Observações
 
 - Use um endereço alcançável a partir do ambiente onde o Jellyfin está rodando. `localhost` só funciona quando a API está acessível no mesmo namespace de rede; dentro de um contêiner, refere-se ao próprio contêiner.
 - Se a API ficar exposta fora da rede local, proteja-a com autenticação e use HTTPS.

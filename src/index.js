@@ -295,10 +295,6 @@ async function start() {
     });
   });
   client.on('ready', markWhatsAppReady);
-  client.on('change_state', (state) => {
-    logInfo(`WhatsApp: ${state}`);
-    if (state !== 'CONNECTED') whatsappReady = false;
-  });
   client.on('auth_failure', (message) => {
     whatsappReady = false;
     qrImage = null;
