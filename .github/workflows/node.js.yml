@@ -87,4 +87,4 @@ jobs:
     - name: Publish GitHub release
       run: npm run release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SEMANTIC_RELEASE_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
