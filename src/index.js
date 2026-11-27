@@ -9,6 +9,16 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const { formatNotification } = require('./notifications');
 const { sendWhatsAppMessage } = require('./whatsapp');
 const { logError, logInfo } = require('./logger');
+const NOISE = /INFO\s+WhatsApp:\s+(OPENING|PAIRING|CONNECTED)\b/;
+for (const stream of [process.stdout, process.stderr]) {
+  const write = stream.write.bind(stream);
+  stream.write = (chunk, ...args) => {
+    const text = String(chunk);
+    if (!NOISE.test(text)) return write(chunk, ...args);
+    const kept = text.split('\n').filter((line) => !NOISE.test(line)).join('\n');
+    return kept.trim() === '' ? true : write(kept, ...args);
+  };
+}
 
 function readConfig(env = process.env) {
   const apiToken = env.API_TOKEN?.trim();
