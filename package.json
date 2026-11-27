@@ -31,8 +31,7 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "node --test",
-    "release": "semantic-release",
-    "prepare": "husky"
+    "release": "semantic-release"
   },
   "release": {
     "branches": [
@@ -85,11 +84,8 @@
     "puppeteer@24.38.0": true
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.4",
-    "@commitlint/config-conventional": "^21.2.4",
     "@semantic-release/git": "^11.0.1",
     "@semantic-release/npm": "^11.0.3",
-    "husky": "^9.1.7",
     "semantic-release": "^22.0.12"
   }
 }
