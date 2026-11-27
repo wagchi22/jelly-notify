@@ -77,6 +77,9 @@ No Windows, também é possível iniciar com:
 
 ```powershell
 .\jelly-notify.bat
+
+# ou
+
 node .\src\index.js
 ```
 
@@ -137,12 +140,6 @@ Invoke-RestMethod `
 - Se a API ficar exposta fora da rede local, proteja-a com autenticação e use HTTPS.
 - A API responde com `503` enquanto o WhatsApp estiver desconectado ou reconectando, `400` para payload inválido e `502` em falhas no envio para algum destinatário.
 - O campo `recipient` pode ser usado para enviar a mensagem apenas para um número específico já configurado.
-
-## Testes
-
-```bash
-npm test
-```
 
 ## Licença
 

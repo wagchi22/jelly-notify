@@ -2,9 +2,8 @@
 .github
 .husky
 node_modules
-tests
 docs
 .env
 .wwebjs_auth
 .wwebjs_cache
-npm-debug.log*
+npm-debug.log
